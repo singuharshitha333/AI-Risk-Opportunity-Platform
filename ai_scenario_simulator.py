@@ -60,6 +60,8 @@ st.write(
 
 # ---------------- LOAD EXCEL DATA ----------------
 
+
+# ---------------- LOAD EXCEL DATA ----------------
 @st.cache_data
 def load_data():
     data = pd.read_excel("ai_occupation_exposure_clean.xlsx")
@@ -107,6 +109,12 @@ except Exception as error:
         "the repository root and contains the required columns."
     )
     st.stop()
+
+# Define the original score series and summary statistics
+original = df["AI_Exposure_Score"]
+original_average = original.mean()
+original_median = original.median()
+
 
 
 # ---------------- DATA OVERVIEW ----------------
