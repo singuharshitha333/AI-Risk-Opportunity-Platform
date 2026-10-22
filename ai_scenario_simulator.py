@@ -101,6 +101,7 @@ def load_data():
         raise ValueError("No valid occupation records were found.")
 
     return data
+df = load_data()
 try:
     df = load_data()
 except Exception as error:
