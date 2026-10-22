@@ -62,12 +62,17 @@ def load_data():
     data = pd.read_excel("ai_occupation_exposure_clean.xlsx")
 
     # Match the column names expected by the simulator
+
+# Normalize column names so capitalization does not matter
+data.columns = data.columns.str.strip().str.lower()
+
+# Map the Excel columns to the names expected by the simulator
 data = data.rename(columns={
     "soc_code": "SOC_Code",
     "occupation_title": "Occupation_Title",
     "ai_exposure_score": "AI_Exposure_Score"
 })
-    required_columns = [
+ required_columns = [
         "SOC_Code",
         "Occupation_Title",
         "AI_Exposure_Score"
