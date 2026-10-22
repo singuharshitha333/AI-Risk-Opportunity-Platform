@@ -57,22 +57,23 @@ st.write(
 )
 
 # ---------------- LOAD EXCEL DATA ----------------
+
+# ---------------- LOAD EXCEL DATA ----------------
 @st.cache_data
 def load_data():
     data = pd.read_excel("ai_occupation_exposure_clean.xlsx")
 
-    # Match the column names expected by the simulator
+    # Normalize column names
+    data.columns = data.columns.str.strip().str.lower()
 
-# Normalize column names so capitalization does not matter
-data.columns = data.columns.str.strip().str.lower()
+    # Rename columns to match the simulator
+    data = data.rename(columns={
+        "soc_code": "SOC_Code",
+        "occupation_title": "Occupation_Title",
+        "ai_exposure_score": "AI_Exposure_Score"
+    })
 
-# Map the Excel columns to the names expected by the simulator
-data = data.rename(columns={
-    "soc_code": "SOC_Code",
-    "occupation_title": "Occupation_Title",
-    "ai_exposure_score": "AI_Exposure_Score"
-})
- required_columns = [
+    required_columns = [
         "SOC_Code",
         "Occupation_Title",
         "AI_Exposure_Score"
@@ -113,9 +114,6 @@ except Exception as error:
     )
     st.stop()
 
-original = df["AI_Exposure_Score"]
-original_average = original.mean()
-original_median = original.median()
 
 # ---------------- DATA OVERVIEW ----------------
 st.markdown("### 1. Dataset Overview")
