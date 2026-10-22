@@ -97,7 +97,19 @@ def load_data():
     if data.empty:
         raise ValueError("No valid occupation records were found.")
 
-    return data
+       return data
+
+
+try:
+    df = load_data()
+except Exception as error:
+    st.error(f"Unable to load occupation data: {error}")
+    st.info(
+        "Check that ai_occupation_exposure_clean.xlsx is in "
+        "the repository root and contains the required columns."
+    )
+    st.stop()
+
 
 # Define original score series and statistics
 original = df["AI_Exposure_Score"]
