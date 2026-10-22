@@ -57,16 +57,14 @@ st.write(
 )
 
 # ---------------- LOAD EXCEL DATA ----------------
-
-# ---------------- LOAD EXCEL DATA ----------------
-
-
-# ---------------- LOAD EXCEL DATA ----------------
 @st.cache_data
 def load_data():
     data = pd.read_excel("ai_occupation_exposure_clean.xlsx")
+
+    # Normalize column names
     data.columns = data.columns.str.strip().str.lower()
 
+    # Map cleaned Excel columns to simulator column names
     data = data.rename(columns={
         "soc_code": "SOC_Code",
         "occupation_title": "Occupation_Title",
@@ -91,11 +89,17 @@ def load_data():
         )
 
     data["AI_Exposure_Score"] = pd.to_numeric(
-        data["AI_Exposure_Score"], errors="coerce"
+        data["AI_Exposure_Score"],
+        errors="coerce"
     )
+
     data = data.dropna(subset=required_columns).copy()
+
     data["SOC_Code"] = data["SOC_Code"].astype(str)
     data["Occupation_Title"] = data["Occupation_Title"].astype(str)
+
+    if data.empty:
+        raise ValueError("No valid occupation records were found.")
 
     return data
 
@@ -110,17 +114,16 @@ except Exception as error:
     )
     st.stop()
 
-# Define the original score series and summary statistics
+# Define original score series and statistics
 original = df["AI_Exposure_Score"]
 original_average = original.mean()
 original_median = original.median()
-
-
 
 # ---------------- DATA OVERVIEW ----------------
 st.markdown("### 1. Dataset Overview")
 
 c1, c2, c3 = st.columns(3)
+
 c1.metric("Occupations Analysed", f"{len(df):,}")
 c2.metric("Original Average Score", f"{original_average:.3f}")
 c3.metric("Original Median Score", f"{original_median:.3f}")
@@ -156,8 +159,8 @@ adjustment = st.slider(
     )
 )
 
-# Apply a simple additive score-point adjustment.
-simulated = original + adjustment
+# Apply the same hypothetical adjustment to every occupation
+simulated = (original + adjustment).rename("Simulated_Score")
 
 results = df.copy()
 results["Simulated_Score"] = simulated
@@ -189,7 +192,7 @@ c3.metric(
 
 st.caption(
     "The adjustment is applied equally to all occupations. "
-    "It changes the score levels, not the relative ranking of occupations."
+    "It changes score levels, not the relative ranking of occupations."
 )
 
 st.divider()
@@ -246,12 +249,16 @@ ax1.axvline(
 
 ax1.set_xlabel("Exposure score", color=WHITE)
 ax1.set_ylabel("Number of occupations", color=WHITE)
-ax1.set_title("Original vs Simulated Score Distribution", color=WHITE)
+ax1.set_title(
+    "Original vs Simulated Score Distribution",
+    color=WHITE
+)
 ax1.set_facecolor(PANEL)
 fig1.patch.set_facecolor(NAVY)
 ax1.tick_params(colors=WHITE)
 ax1.grid(axis="y", alpha=0.15)
 ax1.legend(facecolor=PANEL, labelcolor=WHITE, fontsize=8)
+
 for spine in ax1.spines.values():
     spine.set_color(MUTED)
 
@@ -262,8 +269,11 @@ plt.close(fig1)
 # ---------------- TOP 10 OCCUPATIONS ----------------
 st.markdown("### 5. Top 10 Occupations: Original vs Simulated")
 
-top10 = results.nlargest(10, "AI_Exposure_Score").sort_values(
-    "AI_Exposure_Score", ascending=True
+top10 = results.nlargest(
+    10, "AI_Exposure_Score"
+).sort_values(
+    "AI_Exposure_Score",
+    ascending=True
 )
 
 fig2, ax2 = plt.subplots(figsize=(8, 4.5))
@@ -288,9 +298,16 @@ ax2.barh(
 )
 
 ax2.set_yticks(positions)
-ax2.set_yticklabels(top10["Occupation_Title"], fontsize=8, color=WHITE)
+ax2.set_yticklabels(
+    top10["Occupation_Title"],
+    fontsize=8,
+    color=WHITE
+)
 ax2.set_xlabel("Exposure score", color=WHITE)
-ax2.set_title("Top 10 by Original Exposure Score", color=WHITE)
+ax2.set_title(
+    "Top 10 by Original Exposure Score",
+    color=WHITE
+)
 ax2.set_facecolor(PANEL)
 fig2.patch.set_facecolor(NAVY)
 ax2.tick_params(axis="x", colors=WHITE)
@@ -333,6 +350,7 @@ a.metric("Occupation", row["Occupation_Title"])
 b.metric("Original Score", f'{row["AI_Exposure_Score"]:.3f}')
 c.metric("Simulated Score", f'{row["Simulated_Score"]:.3f}')
 
+# ---------------- SCENARIO INTERPRETATION ----------------
 st.markdown("### 7. Scenario Interpretation")
 
 if adjustment > 0:
@@ -369,7 +387,10 @@ with st.expander("View all original and simulated scores"):
             "Simulated_Score",
             "Score_Change"
         ]
-    ].sort_values("Simulated_Score", ascending=False)
+    ].sort_values(
+        "Simulated_Score",
+        ascending=False
+    )
 
     st.dataframe(
         display_df,
