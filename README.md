@@ -57,27 +57,6 @@ The source workbook contains 774 occupation records and 250 industry records.
 
 The scores are exposure measures, not direct probabilities of job loss. A higher score should not be interpreted as a guaranteed job loss or a precise prediction of future employment.
 
-## Project Structure
-
-```text
-AI-Risk-Opportunity-Platform/
-├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── final/
-├── sql/
-├── python/
-├── powerbi/
-├── website/
-│   ├── images/
-│   └── downloads/
-├── documentation/
-└── README.md
-```
-
-*Note: Folder names shown above describe the intended project organization. Adjust them to match the files actually present in the repository.*
-
-
 ## Getting Started
 
 1. Clone or download this repository.
