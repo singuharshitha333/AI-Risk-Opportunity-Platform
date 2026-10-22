@@ -1,7 +1,6 @@
 
 import streamlit as st
 import pandas as pd
-import pyodbc
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -57,30 +56,41 @@ st.write(
     "occupation-level results and the overall score distribution."
 )
 
-# ---------------- LOAD SQL DATA ----------------
+# ---------------- LOAD EXCEL DATA ----------------
 @st.cache_data
 def load_data():
-    connection_string = (
-        "DRIVER={ODBC Driver 18 for SQL Server};"
-        r"SERVER=localhost\SQLEXPRESS;"
-        "DATABASE=AIRiskOpportunityDB;"
-        "Trusted_Connection=yes;"
-        "TrustServerCertificate=yes;"
-    )
+    data = pd.read_excel("ai_occupation_exposure_clean.xlsx")
 
-    with pyodbc.connect(connection_string, timeout=10) as connection:
-        query = """
-            SELECT SOC_Code, Occupation_Title, AI_Exposure_Score
-            FROM dbo.OccupationExposure
-        """
-        data = pd.read_sql(query, connection)
+    # Match the column names expected by the simulator
+    data = data.rename(columns={
+        "SOC Code": "SOC_Code",
+        "Occupation Title": "Occupation_Title",
+        "Language Modeling AIOE": "AI_Exposure_Score"
+    })
+
+    required_columns = [
+        "SOC_Code",
+        "Occupation_Title",
+        "AI_Exposure_Score"
+    ]
+
+    missing_columns = [
+        column for column in required_columns
+        if column not in data.columns
+    ]
+
+    if missing_columns:
+        raise ValueError(
+            f"Missing required columns: {missing_columns}. "
+            f"Available columns: {list(data.columns)}"
+        )
 
     data["AI_Exposure_Score"] = pd.to_numeric(
         data["AI_Exposure_Score"], errors="coerce"
     )
 
     data = data.dropna(
-        subset=["SOC_Code", "Occupation_Title", "AI_Exposure_Score"]
+        subset=required_columns
     ).copy()
 
     data["SOC_Code"] = data["SOC_Code"].astype(str)
@@ -92,15 +102,11 @@ def load_data():
 try:
     df = load_data()
 except Exception as error:
-    st.error(f"Unable to load SQL Server data: {error}")
+    st.error(f"Unable to load occupation data: {error}")
     st.info(
-        "Check that SQL Server is running and that "
-        "AIRiskOpportunityDB contains dbo.OccupationExposure."
+        "Check that ai_occupation_exposure_clean.xlsx is in "
+        "the repository root and contains the required columns."
     )
-    st.stop()
-
-if df.empty:
-    st.error("No valid occupation records were found.")
     st.stop()
 
 original = df["AI_Exposure_Score"]
