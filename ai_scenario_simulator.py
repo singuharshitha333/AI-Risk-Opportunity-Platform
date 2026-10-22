@@ -57,6 +57,7 @@ st.write(
 )
 
 # ---------------- LOAD EXCEL DATA ----------------
+# ---------------- LOAD EXCEL DATA ----------------
 @st.cache_data
 def load_data():
     data = pd.read_excel("ai_occupation_exposure_clean.xlsx")
@@ -80,9 +81,11 @@ def load_data():
         )
 
     data = data[required_columns].copy()
+
     data["ai_exposure_score"] = pd.to_numeric(
         data["ai_exposure_score"], errors="coerce"
     )
+
     data = data.dropna(subset=required_columns).copy()
 
     data = data.rename(columns={
@@ -98,8 +101,6 @@ def load_data():
         raise ValueError("No valid occupation records were found.")
 
     return data
-
-
 try:
     df = load_data()
 except Exception as error:
