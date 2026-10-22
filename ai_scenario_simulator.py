@@ -60,21 +60,12 @@ st.write(
 @st.cache_data
 def load_data():
     data = pd.read_excel("ai_occupation_exposure_clean.xlsx")
-
-    # Normalize column names
     data.columns = data.columns.str.strip().str.lower()
 
-    # Map cleaned Excel columns to simulator column names
-    data = data.rename(columns={
-        "soc_code": "SOC_Code",
-        "occupation_title": "Occupation_Title",
-        "ai_exposure_score": "AI_Exposure_Score"
-    })
-
     required_columns = [
-        "SOC_Code",
-        "Occupation_Title",
-        "AI_Exposure_Score"
+        "soc_code",
+        "occupation_title",
+        "ai_exposure_score",
     ]
 
     missing_columns = [
@@ -84,16 +75,21 @@ def load_data():
 
     if missing_columns:
         raise ValueError(
-            f"Missing required columns: {missing_columns}. "
+            f"Missing columns: {missing_columns}. "
             f"Available columns: {list(data.columns)}"
         )
 
-    data["AI_Exposure_Score"] = pd.to_numeric(
-        data["AI_Exposure_Score"],
-        errors="coerce"
+    data = data[required_columns].copy()
+    data["ai_exposure_score"] = pd.to_numeric(
+        data["ai_exposure_score"], errors="coerce"
     )
-
     data = data.dropna(subset=required_columns).copy()
+
+    data = data.rename(columns={
+        "soc_code": "SOC_Code",
+        "occupation_title": "Occupation_Title",
+        "ai_exposure_score": "AI_Exposure_Score",
+    })
 
     data["SOC_Code"] = data["SOC_Code"].astype(str)
     data["Occupation_Title"] = data["Occupation_Title"].astype(str)
@@ -102,17 +98,6 @@ def load_data():
         raise ValueError("No valid occupation records were found.")
 
     return data
-
-
-try:
-    df = load_data()
-except Exception as error:
-    st.error(f"Unable to load occupation data: {error}")
-    st.info(
-        "Check that ai_occupation_exposure_clean.xlsx is in "
-        "the repository root and contains the required columns."
-    )
-    st.stop()
 
 # Define original score series and statistics
 original = df["AI_Exposure_Score"]
