@@ -1,47 +1,92 @@
 # AI Risk vs Opportunity Intelligence Platform
 
-## Project Overview
+A data-driven analytics project exploring how Artificial Intelligence (AI) may affect occupations and industries, helping users understand AI exposure and explore potential adoption scenarios.
 
-This project analyzes how artificial intelligence may affect different occupations, employment outlooks, and skill requirements.
+## Overview
 
-The goal is to develop an interactive, data-driven platform that helps users explore potential AI exposure, employment trends, and skills associated with changing work requirements.
+Artificial Intelligence is transforming the way organizations work. While AI can automate or assist with certain tasks, it can also create new opportunities and change the skills required across industries.
 
-## Business Questions
+The **AI Risk vs Opportunity Intelligence Platform** brings AI exposure data and interactive analytics together to help users explore occupational exposure, compare industries, and understand possible future scenarios.
 
-- Which occupations have higher potential AI exposure?
-- How do AI exposure and projected employment growth compare?
-- What skills are associated with different occupations?
-- How can users compare hypothetical AI-adoption scenarios?
+This project was developed as an end-to-end data analytics portfolio project using SQL Server, Python, Power BI, and a web-based interface.
 
-## Tools and Technologies
+## Project Objectives
 
-- Microsoft Excel
-- Microsoft SQL Server (SSMS)
-- Python
-- Power BI
-- Web technologies (planned)
+- Analyze AI exposure across occupations and industries.
+- Identify occupations with relatively higher or lower AI exposure scores.
+- Explore industry-level AI exposure patterns.
+- Present analytical findings through interactive Power BI dashboards.
+- Allow users to explore occupation exposure through an exposure calculator.
+- Simulate different AI adoption scenarios.
+- Communicate findings through an accessible project website.
+
+## Key Features
+
+### 1. Interactive Power BI Dashboard
+Explore occupation and industry exposure data through charts, summaries, filters, and analytical insights.
+
+### 2. AI Exposure Calculator
+Select an occupation and explore its corresponding AI exposure score.
+
+### 3. Scenario Simulator
+Explore hypothetical AI adoption scenarios and compare how different assumptions may affect the analysis.
+
+### 4. Project Website
+A dedicated website brings together the project overview, data sources, methodology, analytical tools, dashboard screenshots, and report download option.
+
+### 5. SQL and Python Analysis
+SQL Server supports data storage and analytical queries, while Python supports data preparation and validation.
+
+## Technology Stack
+
+- **Microsoft Excel** — initial data inspection
+- **Python** — data validation and preparation
+- **SQL Server / SSMS** — database storage and analysis
+- **Power BI** — interactive dashboards and visual analytics
+- **HTML, CSS, JavaScript** — project website
+- **GitHub** — project versioning and documentation
 
 ## Data Sources
 
-- AI Occupational Exposure research datasets
-- U.S. Bureau of Labor Statistics
-- O*NET occupational database
+The project uses the AI Occupation Exposure Repository, including:
 
-## Project Status
+- **LM AIOE:** occupation-level Language Modeling AI Occupational Exposure scores.
+- **LM AIIE:** industry-level Language Modeling AI Industry Exposure scores.
 
-In progress — data collection and validation.
+The source workbook contains 774 occupation records and 250 industry records.
 
-## Important Note
+The scores are exposure measures, not direct probabilities of job loss. A higher score should not be interpreted as a guaranteed job loss or a precise prediction of future employment.
 
-AI exposure does not necessarily mean that an occupation will disappear. Employment projections and hypothetical scenarios will be interpreted separately from AI exposure measures.
+## Project Structure
 
-## Future Enhancements
+```text
+AI-Risk-Opportunity-Platform/
+├── data/
+│   ├── raw/
+│   ├── processed/
+│   └── final/
+├── sql/
+├── python/
+├── powerbi/
+├── website/
+│   ├── images/
+│   └── downloads/
+├── documentation/
+└── README.md
+```
 
-- Interactive AI impact calculator
-- Skills exploration and recommendation feature
-- Scenario simulator
-- Interactive website
+*Note: Folder names shown above describe the intended project organization. Adjust them to match the files actually present in the repository.*
 
-## Author
+## Dashboard Preview
 
-Data Analyst Portfolio Project
+### AI Exposure Overview
+
+![AI Exposure Dashboard Overview](website/images/dashboard-overview.jpeg)
+
+### Insights and Recommendations
+
+![AI Exposure Insights and Recommendations](website/images/dashboard-insights.jpeg)
+
+## Getting Started
+
+1. Clone or
