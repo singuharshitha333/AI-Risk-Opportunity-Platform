@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -199,13 +199,26 @@
           scores from hypothetical scenario adjustments.</p>
       </div>
       <div class="method-grid">
-        <article><span>01</span><h3>Data preparation</h3><p>Inspect source fields, validate records, and prepare occupation and industry data for analysis.</p></article>
-        <article><span>02</span><h3>Analytical workflow</h3><p>Use SQL Server for structured data, Python for interactive analysis, and Power BI for reporting.</p></article>
-        <article><span>03</span><h3>Responsible interpretation</h3><p>Explain what scores measure, document assumptions, and avoid unsupported employment predictions.</p></article>
+        <article>
+          <span>01</span>
+          <h3>Data preparation</h3>
+          <p>Inspect source fields, validate records, and prepare occupation and industry data for analysis.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Analytical workflow</h3>
+          <p>Use SQL Server for structured data, Python for interactive analysis, and Power BI for reporting.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Responsible interpretation</h3>
+          <p>Explain what scores measure, document assumptions, and avoid unsupported employment predictions.</p>
+        </article>
       </div>
       <div class="limitation-note">
         <div class="limitation-mark">!</div>
-        <div><h3>What an exposure score does not tell you</h3>
+        <div>
+          <h3>What an exposure score does not tell you</h3>
           <p>An exposure score is not a probability of job loss, a forecast of future hiring,
             or proof that an entire occupation will be automated. Real-world outcomes depend
             on tasks, adoption, organizational choices, and other factors.</p>
@@ -221,26 +234,50 @@
         </div>
         <p>Choose a tool based on the question you want to investigate.</p>
       </div>
+
       <div class="tool-grid">
         <article class="tool-card">
-          <div class="tool-topline"><span>TOOL 01</span><span class="tool-status">PYTHON / SQL</span></div>
+          <div class="tool-topline">
+            <span>TOOL 01</span>
+            <span class="tool-status">PYTHON / SQL</span>
+          </div>
           <h3>Occupation Exposure Calculator</h3>
           <p>Look up an occupation and inspect its exposure score and contextual interpretation.</p>
-          <a class="button secondary tool-link" href="http://localhost:8501" target="_blank" rel="noopener noreferrer">Open calculator <span>↗</span></a>
+          <a class="button secondary tool-link"
+             href="http://localhost:8501"
+             target="_blank"
+             rel="noopener noreferrer">
+            Open calculator <span>↗</span>
+          </a>
           <p class="tool-help">Requires the calculator app to be running on your computer.</p>
         </article>
+
         <article class="tool-card">
-          <div class="tool-topline"><span>TOOL 02</span><span class="tool-status">SCENARIO ANALYSIS</span></div>
+          <div class="tool-topline">
+            <span>TOOL 02</span>
+            <span class="tool-status">SCENARIO ANALYSIS</span>
+          </div>
           <h3>AI Scenario Simulator</h3>
           <p>Adjust hypothetical score points and compare distributions and occupation-level results.</p>
-          <a class="button secondary tool-link" href="http://localhost:8502" target="_blank" rel="noopener noreferrer">Open simulator <span>↗</span></a>
-          <p class="tool-help">Requires the simulator app to be running on your computer.</p>
+          <a class="button secondary tool-link"
+             href="https://ai-risk-opportunity-platform-jemgfgz2r2zkyfqewhzlha.streamlit.app/"
+             target="_blank"
+             rel="noopener noreferrer">
+            Open simulator <span>↗</span>
+          </a>
+          <p class="tool-help">Opens the live simulator in a new tab.</p>
         </article>
+
         <article class="tool-card">
-          <div class="tool-topline"><span>TOOL 03</span><span class="tool-status">POWER BI</span></div>
+          <div class="tool-topline">
+            <span>TOOL 03</span>
+            <span class="tool-status">POWER BI</span>
+          </div>
           <h3>Analytics Dashboard</h3>
           <p>Explore occupation and industry analysis, report visuals, filters, and evidence-informed insights.</p>
-          <a class="button secondary tool-link" href="dashboard.html">View dashboard &amp; screenshots <span>→</span></a>
+          <a class="button secondary tool-link" href="dashboard.html">
+            View dashboard &amp; screenshots <span>→</span>
+          </a>
           <p class="tool-help">Preview both report pages and download the Power BI report.</p>
         </article>
       </div>
@@ -270,3 +307,4 @@
   </footer>
 </body>
 </html>
+```
