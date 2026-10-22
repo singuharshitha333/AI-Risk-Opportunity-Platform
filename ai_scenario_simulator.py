@@ -97,7 +97,7 @@ def load_data():
     if data.empty:
         raise ValueError("No valid occupation records were found.")
 
-       return data
+    return data
 
 
 try:
