@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore the AI Risk vs Opportunity Intelligence Platform Power BI dashboard.">
+  <title>Power BI Dashboard | AI Risk vs Opportunity Platform</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .dashboard-page { width: min(1100px, 92%); margin: auto; padding: 60px 0 80px; }
+    .dashboard-intro { max-width: 760px; margin-bottom: 36px; }
+    .dashboard-intro p, .report-caption, .dashboard-note { line-height: 1.8; }
+    .report-card { margin: 28px 0; padding: 24px; border: 1px solid rgba(148,163,184,.22); border-radius: 18px; background: rgba(255,255,255,.025); }
+    .report-card h2 { margin-top: 0; }
+    .report-image { display: block; width: 100%; height: auto; margin-top: 18px; border-radius: 10px; }
+    .report-caption { font-size: .92rem; opacity: .8; margin-top: 14px; }
+    .dashboard-actions { display: flex; flex-wrap: wrap; gap: 14px; margin: 26px 0; }
+    .dashboard-note { margin-top: 30px; padding: 20px; border-left: 3px solid #20c7b5; border-radius: 8px; }
+    .dashboard-back { display: inline-block; margin-top: 28px; }
+  </style>
+</head>
+<body>
+  <main class="dashboard-page">
+    <section class="dashboard-intro">
+      <p class="eyebrow">PROJECT REPORT</p>
+      <h1>AI Exposure Analytics Dashboard</h1>
+      <p>Explore the Power BI report developed for the AI Risk vs Opportunity Intelligence Platform. The dashboard presents occupation and industry AI exposure indicators to support data exploration and interpretation.</p>
+      <div class="dashboard-actions">
+        <a class="button primary" href="downloads/AI_Risk_Opportunity_Intelligence_Platform_SHARE_COPY.pbix" download>Download Power BI Report</a>
+        <a class="button secondary" href="index.html">Back to Project</a>
+      </div>
+    </section>
+
+    <section class="report-card">
+      <h2>01 — AI Exposure Overview</h2>
+      <p>An overview of occupation exposure indicators, summary metrics, charts, and interactive filters.</p>
+      <a href="images/dashboard-overview.jpeg" target="_blank" rel="noopener noreferrer">
+        <img class="report-image" src="images/dashboard-overview.jpeg" alt="AI Exposure Overview Power BI dashboard">
+      </a>
+      <p class="report-caption">Select the image to view it larger. Use the downloadable Power BI report to explore its filters.</p>
+    </section>
+
+    <section class="report-card">
+      <h2>02 — Insights &amp; Recommendations</h2>
+      <p>A report page focused on interpreting exposure indicators and presenting evidence-informed insights.</p>
+      <a href="images/dashboard-insights.jpeg" target="_blank" rel="noopener noreferrer">
+        <img class="report-image" src="images/dashboard-insights.jpeg" alt="Insights and Recommendations Power BI dashboard">
+      </a>
+      <p class="report-caption">Select the image to view it larger. The downloadable report contains the interactive visuals and filters.</p>
+    </section>
+
+    <section class="dashboard-note">
+      <strong>Important information</strong>
+      <p>The Power BI report uses a local SQL Server data connection. It may open with saved data, but refreshing it on another computer may require a separately configured data source. Power BI Desktop is required to interact with the report.</p>
+      <p>AI exposure scores are indicators from the source dataset, not probabilities that a job will be eliminated.</p>
+    </section>
+
+    <a class="dashboard-back" href="index.html">&larr; Return to the project homepage</a>
+  </main>
+</body>
+</html>
