@@ -59,16 +59,12 @@ st.write(
 # ---------------- LOAD EXCEL DATA ----------------
 
 # ---------------- LOAD EXCEL DATA ----------------
+
 @st.cache_data
 def load_data():
     data = pd.read_excel("ai_occupation_exposure_clean.xlsx")
-
-    # Normalize column names
     data.columns = data.columns.str.strip().str.lower()
 
-    # Rename columns to match the simulator
-   
-    # Rename columns to match the simulator
     data = data.rename(columns={
         "soc_code": "SOC_Code",
         "occupation_title": "Occupation_Title",
@@ -82,8 +78,8 @@ def load_data():
     ]
 
     missing_columns = [
-        column for column in required_columns
-        if column not in data.columns
+        col for col in required_columns
+        if col not in data.columns
     ]
 
     if missing_columns:
@@ -95,11 +91,7 @@ def load_data():
     data["AI_Exposure_Score"] = pd.to_numeric(
         data["AI_Exposure_Score"], errors="coerce"
     )
-
-    data = data.dropna(
-        subset=required_columns
-    ).copy()
-
+    data = data.dropna(subset=required_columns).copy()
     data["SOC_Code"] = data["SOC_Code"].astype(str)
     data["Occupation_Title"] = data["Occupation_Title"].astype(str)
 
