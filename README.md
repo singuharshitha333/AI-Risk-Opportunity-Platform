@@ -77,16 +77,46 @@ AI-Risk-Opportunity-Platform/
 
 *Note: Folder names shown above describe the intended project organization. Adjust them to match the files actually present in the repository.*
 
-## Dashboard Preview
-
-### AI Exposure Overview
-
-![AI Exposure Dashboard Overview](website/images/dashboard-overview.jpeg)
-
-### Insights and Recommendations
-
-![AI Exposure Insights and Recommendations](website/images/dashboard-insights.jpeg)
 
 ## Getting Started
 
-1. Clone or
+1. Clone or download this repository.
+2. Review the data files and documentation.
+3. Install the required Python packages for the scripts you want to run.
+4. Configure SQL Server and import the required datasets if you want to reproduce the database analysis.
+5. Open the Power BI report in Power BI Desktop.
+6. Open `website/index.html` in a browser to explore the project website.
+
+**Important:** Reproducing the SQL-backed features may require updating database connection settings for your own environment. The Power BI report may also require data-source configuration before refreshing.
+
+## Analytical Approach
+
+1. Inspect the source datasets and their columns.
+2. Validate record counts, missing values, and duplicate identifiers.
+3. Prepare the datasets for analysis.
+4. Store and query the data using SQL Server.
+5. Build Power BI visuals to explore occupation and industry exposure.
+6. Integrate the calculator, scenario simulator, and dashboard access into the project website.
+7. Interpret results carefully, acknowledging the limitations of exposure scores.
+
+## Limitations
+
+- AI exposure scores do not directly measure the probability that a job will disappear.
+- Exposure does not necessarily mean full automation; AI may assist with only some tasks in an occupation.
+- Scenario simulations are exploratory and depend on their assumptions.
+- Results should be interpreted alongside additional evidence about skills, labor demand, adoption rates, and industry conditions.
+- The project uses the available source datasets and does not claim to predict the exact future of employment.
+
+## Future Enhancements
+
+Potential extensions include integrating additional labor-market datasets, adding time-series analysis, expanding evidence-based recommendations, and incorporating regularly updated data where reliable sources are available.
+
+## Author
+
+**Singu Harshitha**
+
+Data Analytics Project
+
+## Acknowledgements
+
+Thanks to the creators and maintainers of the AI Occupation Exposure Repository for making the exposure datasets available for analysis.
