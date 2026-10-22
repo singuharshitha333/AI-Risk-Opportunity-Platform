@@ -67,6 +67,8 @@ def load_data():
     data.columns = data.columns.str.strip().str.lower()
 
     # Rename columns to match the simulator
+   
+    # Rename columns to match the simulator
     data = data.rename(columns={
         "soc_code": "SOC_Code",
         "occupation_title": "Occupation_Title",
