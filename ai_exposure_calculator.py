@@ -55,22 +55,6 @@ def load_occupation_data():
     })
 
     return df
-    connection_string = (
-        "DRIVER={ODBC Driver 18 for SQL Server};"
-        r"SERVER=localhost\SQLEXPRESS;"
-        "DATABASE=AIRiskOpportunityDB;"
-        "Trusted_Connection=yes;"
-        "TrustServerCertificate=yes;"
-    )
-
-    with pyodbc.connect(connection_string, timeout=10) as connection:
-        query = """
-            SELECT SOC_Code, Occupation_Title, AI_Exposure_Score
-            FROM dbo.OccupationExposure
-        """
-        return pd.read_sql(query, connection)
-
-
 try:
     df = load_occupation_data()
     df["AI_Exposure_Score"] = pd.to_numeric(
