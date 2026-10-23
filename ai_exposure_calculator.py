@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import pyodbc
+
 
 st.set_page_config(
     page_title="AI Exposure Calculator",
@@ -44,22 +44,17 @@ st.write(
 
 @st.cache_data
 def load_occupation_data():
-    connection_string = (
-        "DRIVER={ODBC Driver 18 for SQL Server};"
-        r"SERVER=localhost\SQLEXPRESS;"
-        "DATABASE=AIRiskOpportunityDB;"
-        "Trusted_Connection=yes;"
-        "TrustServerCertificate=yes;"
-    )
+    file_path = "data/processed/ai_occupation_exposure_clean.xlsx"
 
-    with pyodbc.connect(connection_string, timeout=10) as connection:
-        query = """
-            SELECT SOC_Code, Occupation_Title, AI_Exposure_Score
-            FROM dbo.OccupationExposure
-        """
-        return pd.read_sql(query, connection)
+    df = pd.read_excel(file_path, engine="openpyxl")
 
+    df = df.rename(columns={
+        "soc_code": "SOC_Code",
+        "occupation_title": "Occupation_Title",
+        "ai_exposure_score": "AI_Exposure_Score"
+    })
 
+    return df
 try:
     df = load_occupation_data()
     df["AI_Exposure_Score"] = pd.to_numeric(
