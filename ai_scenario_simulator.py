@@ -63,8 +63,7 @@ st.write(
 @st.cache_data
 def load_data():
     # Locate the project root from this Python file.
-    project_root = Path(__file__).resolve().parent.parent
-
+   project_root = Path(__file__).resolve().parent
     # Excel file is inside data/processed/.
     excel_path = (
         project_root
