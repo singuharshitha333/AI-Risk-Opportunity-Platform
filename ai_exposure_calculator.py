@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import pyodbc
+
 
 st.set_page_config(
     page_title="AI Exposure Calculator",
