@@ -44,6 +44,17 @@ st.write(
 
 @st.cache_data
 def load_occupation_data():
+    file_path = "data/processed/ai_occupation_exposure_clean.xlsx"
+
+    df = pd.read_excel(file_path, engine="openpyxl")
+
+    df = df.rename(columns={
+        "soc_code": "SOC_Code",
+        "occupation_title": "Occupation_Title",
+        "ai_exposure_score": "AI_Exposure_Score"
+    })
+
+    return df
     connection_string = (
         "DRIVER={ODBC Driver 18 for SQL Server};"
         r"SERVER=localhost\SQLEXPRESS;"
